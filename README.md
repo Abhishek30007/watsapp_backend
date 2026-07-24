@@ -20,8 +20,8 @@ A Node.js/Express backend for **CelebrateMate**, a real-time event reminder app 
 
 ### 1. Clone and install
 ```bash
-git clone https://github.com/Abhishek30007/social_backend.git
-cd social_backend
+git clone https://github.com/Abhishek30007/watsapp_backend.git
+cd watsapp_backend
 npm install
 ```
 
@@ -42,7 +42,7 @@ npm start          # production
 npm run dev        # development (nodemon hot-reload)
 ```
 
-Server runs on `https://social-backend-umgh.onrender.com`
+Server runs on `https://watsapp-backend-td8c.onrender.com`
 
 ## API Routes
 | Method | Endpoint | Description |
