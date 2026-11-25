@@ -6,6 +6,7 @@ A Node.js/Express backend for **CelebrateMate**, a real-time event reminder plat
 - 💬 **WhatsApp Notifications** via Twilio & Wappfly
 - 🤖 **AI-Powered Wishes** via Google Gemini 2.5 Flash
 - 🗓️ **Automated Scheduler** — cron-based event matching and BullMQ delayed job processing
+- 📦 **Bulk CSV Import** — upload contacts with automated WhatsApp wish scheduling
 - 📜 **Delivery History** with retry support
 - 🎨 **Greeting Card Generator** using server-side Canvas
 
@@ -14,7 +15,7 @@ A Node.js/Express backend for **CelebrateMate**, a real-time event reminder plat
 - MongoDB + Mongoose
 - BullMQ + Redis (Distributed Asynchronous Job Queue & Delayed Scheduler)
 - Twilio & Wappfly (WhatsApp Dispatcher)
-- Axios, @google/generative-ai, canvas, node-cron
+- Axios, @google/generative-ai, canvas, multer, node-cron
 
 ## Distributed Architecture
 
@@ -75,6 +76,8 @@ Server runs on `https://watsapp-backend-td8c.onrender.com`
 | POST   | /api/wishes/:id/test-whatsapp | Send a test WhatsApp message |
 | POST   | /api/ai/generate-wish | Generate an AI wish |
 | GET    | /api/card/generate | Generate a greeting card PNG |
+| POST   | /api/import/csv | Bulk import contacts from CSV & auto-schedule wishes |
+| GET    | /api/import/sample | Download sample CSV template |
 | GET    | /api/logs | Delivery history |
 | POST   | /api/logs/:id/retry | Retry a failed delivery |
 | GET    | /api/health | Health check |

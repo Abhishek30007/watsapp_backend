@@ -8,6 +8,7 @@ const cardRoutes     = require('./routes/cardRoutes');
 const logRoutes      = require('./routes/logRoutes');
 const adminAlertRoutes = require('./routes/adminAlertRoutes');
 const whatsappRoutes = require('./routes/whatsappRoutes');
+const importRoutes = require('./routes/importRoutes');
 const { startScheduler } = require('./services/cronScheduler');
 
 const app = express();
@@ -24,6 +25,7 @@ app.use('/api/card',     cardRoutes);
 app.use('/api/logs',     logRoutes);
 app.use('/api/admin-alerts', adminAlertRoutes);
 app.use('/api/whatsapp', whatsappRoutes);
+app.use('/api/import',   importRoutes);
 
 // Basic health check endpoint
 app.get('/api/health', (req, res) => {
@@ -31,7 +33,7 @@ app.get('/api/health', (req, res) => {
     status: 'healthy',
     timestamp: new Date(),
     uptime: process.uptime(),
-    features: ['WhatsApp', 'AI Wishes', 'Greeting Cards', 'Wish History'],
+    features: ['WhatsApp', 'AI Wishes', 'Greeting Cards', 'Wish History', 'Bulk CSV Import'],
     integrations: {
       twilio: {
         configured: !!(process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.TWILIO_PHONE_NUMBER),
