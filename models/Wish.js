@@ -15,9 +15,8 @@ const wishSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: [true, 'Email address is required'],
     trim: true,
-    match: [/^\S+@\S+\.\S+$/, 'Please provide a valid email address'],
+    default: '',
   },
   category: {
     type: String,
@@ -42,14 +41,6 @@ const wishSchema = new mongoose.Schema({
     whatsapp: {
       type: Boolean,
       default: true,
-    },
-    sms: {
-      type: Boolean,
-      default: false,
-    },
-    email: {
-      type: Boolean,
-      default: false,
     },
   },
   status: {

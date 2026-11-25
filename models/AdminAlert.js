@@ -40,14 +40,6 @@ const adminAlertSchema = new mongoose.Schema({
       type: Boolean,
       default: true,
     },
-    sms: {
-      type: Boolean,
-      default: false,
-    },
-    voiceCall: {
-      type: Boolean,
-      default: false,
-    },
   },
   status: {
     type: String,

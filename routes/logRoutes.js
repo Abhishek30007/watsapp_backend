@@ -1,8 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const NotificationLog = require('../models/NotificationLog');
-const { sendSMS }   = require('../services/smsService');
-const { sendCustomEmail } = require('../services/emailService');
+const { sendWhatsAppMessage } = require('../services/whatsappService');
 
 // @route   GET /api/logs
 // @desc    Fetch paginated wish/delivery history logs
@@ -56,21 +55,8 @@ router.post('/:id/retry', async (req, res) => {
     await log.save();
 
     try {
-      if (log.channel === 'SMS') {
-        await sendSMS([log.phoneNumber], log.message);
-        log.status = 'Sent';
-      } else if (log.channel === 'Voice') {
-        const { makeVoiceCall } = require('../services/voiceService');
-        await makeVoiceCall(log.phoneNumber, log.message);
-        log.status = 'Sent';
-      } else if (log.channel === 'Email') {
-        await sendCustomEmail(log.email, `Retry: Celebration Reminder`, log.message);
-        log.status = 'Sent';
-      } else if (log.channel === 'WhatsApp') {
-        const { sendWhatsAppMessage } = require('../services/whatsappService');
-        await sendWhatsAppMessage(log.phoneNumber, log.message);
-        log.status = 'Sent';
-      }
+      await sendWhatsAppMessage(log.phoneNumber, log.message);
+      log.status = 'Sent';
     } catch (sendErr) {
       log.status       = 'Failed';
       log.errorDetails = sendErr.message;
